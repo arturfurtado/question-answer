@@ -1,0 +1,48 @@
+<%- include('partials/header.ejs'); %>
+<body>
+<%- include('partials/navbar.ejs'); %>
+<div class="questionsList">
+    <h1 class="titulo">Perguntas</h1>  
+    <span class="arrowDown">↓</span>
+    <button onclick="toggleSortOptions()" class="sort-button">
+        <span id="sortIcon">▼</span> Ordenar Perguntas
+    </button>
+    <div id="sortOptions" class="sort-options" style="display: none;">
+        <a href="/pickQuestion?field=id&dir=ASC">Ordenar por ID (Ascendente)</a>
+        <a href="/pickQuestion?field=id&dir=DESC">Ordenar por ID (Descendente)</a>
+        <a href="/pickQuestion?field=createdAt&dir=ASC">Ordenar por Data de Criação (Ascendente)</a>
+        <a href="/pickQuestion?field=createdAt&dir=DESC">Ordenar por Data de Criação (Descendente)</a>
+        <a href="/pickQuestion?field=titulo&dir=ASC">Ordenar por Título (Ascendente)</a>
+        <a href="/pickQuestion?field=titulo&dir=DESC">Ordenar por Título (Descendente)</a>
+    </div>
+    <div class="questions">
+        <% questions.forEach((question) => { %>
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <h3>Título: <%= question.titulo %></h3> 
+                </div>
+                <div class="card-footer">
+                    <a href="/showQuestion/<%= question.id %>" class="btn btn-success">Responder <%=question.id %></a>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+<%- include('partials/scripts.ejs'); %>
+
+<script>
+    function toggleSortOptions() {
+        const sortOptions = document.getElementById("sortOptions");
+        const sortIcon = document.getElementById("sortIcon");
+
+        if (sortOptions.style.display === "none") {
+            sortOptions.style.display = "block";
+            sortIcon.textContent = "▲"; 
+        } else {
+            sortOptions.style.display = "none";
+            sortIcon.textContent = "▼";
+        }
+    }
+</script>
+</body>
