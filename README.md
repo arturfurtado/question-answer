@@ -1,2 +1,2 @@
 # question-answer
-Dumb question &amp; answer application made with nodeJS and EJs to study node
+Simple question & answer application made to study a bit of Ejs and Node
